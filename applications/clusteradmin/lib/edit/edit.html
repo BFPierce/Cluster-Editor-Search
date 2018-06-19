@@ -1,0 +1,132 @@
+<br/>
+<div class="row">
+    <div class="small-offset-4 small-4 columns end button-group expanded">
+        <input type="button" class="button" ng-click="vm.Dashboard()" value="Dashboard" />
+    </div>
+</div>
+
+<div ng-if="vm.clusterServiceSetup && vm.dataServiceSetup">
+    <div class="callout">
+        <div class="row">
+            <div class="small-2 columns">
+                <label for="clusterNumber">
+                    <b>Cluster Number</b>
+                </label>
+                <input type="text" id="clusterNumber" readonly ng-model="vm.modelData.clusterNumber" />
+            </div>
+            <div class="small-2 columns">
+                <label for="expirationTerm">
+                    <b>Expiration Term</b>
+                </label>
+                <select id="expirationTerm" ng-model="vm.modelData.expirationTerm" ng-blur="vm.UpdateCluster()">
+                    <option ng-value="value" ng-repeat="(key, value) in vm.terms">{{ key }}</option>
+                </select>
+            </div>
+            <div class="small-8 columns">
+                <label for="clusterTitle">
+                    <b>Cluster Title</b>
+                </label>
+                <input type="text" id="clusterTitle" ng-model="vm.modelData.title" ng-blur="vm.UpdateCluster()" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-offset-2 small-4 columns">
+                <label for="academicDiscipline">
+                    <b>Academic Discipline</b>
+                </label>
+                <select id="academicDiscipline" ng-model="vm.modelData.academicDiscipline" ng-blur="vm.UpdateCluster()">
+                    <option ng-value="value" ng-repeat="(key, value) in vm.academicDisciplines">{{ key }}</option>
+                </select>
+            </div>
+            <div class="small-4 columns end">
+                <label for="academicDepartment">
+                    <b>Academic Department</b>
+                </label>
+                <select id="academicDepartment" ng-model="vm.modelData.academicDepartment" ng-blur="vm.UpdateCluster()">
+                    <option ng-value="object.code" ng-repeat="object in vm.academicDepartments[vm.modelData.academicDiscipline]">{{ object.label }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-offset-2 small-8 columns end">
+                <label for="description">
+                    <b>Cluster Description</b>
+                </label>
+                <textarea id="description" ng-model="vm.modelData.description" ng-blur="vm.UpdateCluster()"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="callout" ng-repeat="group in vm.modelData.groups">
+        <div class="row row-header">
+            <div class="small-2 columns row-text">
+                <b>Group Description</b>
+            </div>
+            <div class="small-8 columns">
+                <input type="text" ng-model="group.groupDescription" ng-blur="vm.UpdateGroup(group.recordID)" />
+            </div>
+            <div class="small-2 columns button-group expanded">
+                <button type="button" class="button small" title="Shift this group up" ng-disabled="vm.transferInProgress" ng-click="vm.ShiftGroup(group.recordID, 'UP')"><i class="fi-arrow-up"></i></button>
+                <button type="button" class="button small" title="Shift this group down" ng-disabled="vm.transferInProgress" ng-click="vm.ShiftGroup(group.recordID, 'DOWN')"><i class="fi-arrow-down"></i></button>
+                <button type="button" class="button small" title="Delete this group" ng-disabled="vm.transferInProgress" ng-click="vm.DeleteGroup(group.recordID)"><i class="fi-x"></i></button>
+            </div>
+        </div>
+
+        <div class="row text-center row-item">
+            <div class="small-2 columns">
+                <b>Number</b>
+            </div>
+            <div class="small-4 columns">
+                <b>Title</b>
+            </div>
+            <div class="small-2 columns">
+                <b>Term Start</b>
+            </div>
+            <div class="small-2 columns">
+                <b>Term End</b>
+            </div>
+            <div class="small-2 columns">
+                <b>Action</b>
+            </div>
+        </div>
+        <div ng-repeat="course in group.courses">
+            <div class="row row-item">
+                <div class="small-2 columns">
+                    <input type="text" maxlength="7" ng-model="course.courseNumber" ng-blur="vm.UpdateCourseNumber(group.recordID, course.recordID)" />
+                </div>
+                <div class="small-4 columns">
+                    <input type="text" ng-model="course.courseTitle" ng-blur="vm.UpdateCourse(group.recordID, course.recordID)" />
+                </div>
+                <div class="small-2 columns">
+                    <select ng-model="course.validStart" ng-blur="vm.UpdateCourse(group.recordID, course.recordID)">
+                        <option ng-value="value" ng-repeat="(key, value) in vm.terms">{{ key }}</option>
+                    </select>
+                </div>
+                <div class="small-2 columns">
+                    <select ng-model="course.validEnd" ng-blur="vm.UpdateCourse(group.recordID, course.recordID)">
+                        <option ng-value="value" ng-repeat="(key, value) in vm.terms">{{ key }}</option>
+                    </select>
+                </div>
+                <div class="small-2 columns">
+                    <div class="row">
+                        <div class="small-12 columns button-group expanded">
+                            <button type="button" class="button tiny" title="Shift this course up" ng-disabled="vm.transferInProgress" ng-click="vm.ShiftCourse(course.recordID, group.recordID, 'UP')"><i class="fi-arrow-up"></i></button>
+                            <button type="button" class="button tiny" title="Shift this course down" ng-disabled="vm.transferInProgress" ng-click="vm.ShiftCourse(course.recordID, group.recordID, 'DOWN')"><i class="fi-arrow-down"></i></button>
+                            <button type="button" class="button tiny" title="Delete this course" ng-disabled="vm.transferInProgress" ng-click="vm.DeleteCourse(course.recordID)"><i class="fi-x"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="small-offset-4 small-4 columns end button-group expanded">
+                <input type="button" class="button secondary button-pop" value="Add Course" ng-disabled="vm.transferInProgress" ng-click="vm.CreateCourse(group.recordID)"/>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-offset-4 small-4 columns end button-group expanded">
+            <input type="button" class="button secondary button-pop" value="Add Group" ng-disabled="vm.transferInProgress" ng-click="vm.CreateGroup(vm.modelData.recordID)"/>
+        </div>
+    </div>
+</div>

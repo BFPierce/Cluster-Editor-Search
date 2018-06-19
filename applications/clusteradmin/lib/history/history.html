@@ -1,0 +1,85 @@
+<br/>
+<div class="row">
+    <div class="small-offset-5 small-2 columns end button-group expanded">
+        <input type="button" class="button" ng-click="vm.Dashboard()" value="Dashboard" />
+    </div>
+</div>
+<div class="callout" ng-repeat="cluster in vm.historyList">
+    <div class="row display-header text-center">
+        <div class="small-4 columns">
+            <b>Cluster Number</b>
+            <br/> {{ cluster.clusterNumber }}
+        </div>
+        <div class="small-4 columns">
+            <b>Expiration Term</b>
+            <br/> {{ vm.TermDisplay(cluster.expirationTerm) }}
+        </div>
+        <div class="small-4 columns end">
+            <b>Cluster Title</b>
+            <br/> {{ cluster.title }}
+        </div>
+    </div>
+    <div class="row display-item text-center">
+        <div class="small-offset-2 small-4 columns">
+            <b>Archived Date</b>
+            <br/> {{ cluster.archivedDate }}
+        </div>
+        <div class="small-4 columns end">
+            <b>Archived User</b>
+            <br/> {{ cluster.archivedUser }}
+        </div>
+    </div>
+    <div class="row display-item text-center">
+        <div class="small-offset-2 small-4 columns">
+            <b>Academic Discipline</b>
+            <br/> {{ vm.academicDisciplinesMap.get(cluster.academicDiscipline) }}
+        </div>
+        <div class="small-4 columns end">
+            <b>Academic Department</b>
+            <br/> {{ vm.academicDepartmentsMap.get(cluster.academicDepartment) }}
+        </div>
+    </div>
+    <div class="row display-item text-center">
+        <div class="small-offset-2 small-8 columns end">
+            <b>Cluster Description</b>
+            <br/> {{ cluster.description }}
+        </div>
+    </div>
+    <div class="callout" ng-repeat="group in cluster.groups">
+        <div class="row row-header-text text-center">
+            <div class="small-offset-2 small-8 columns">
+                {{ group.groupDescription }}
+            </div>
+        </div>
+        <div class="row row-item-text" ng-if="group.courses.length > 0">
+            <div class="small-2 columns">
+                <b>Number</b>
+            </div>
+            <div class="small-6 columns">
+                <b>Title</b>
+            </div>
+            <div class="small-2 columns">
+                <b>Term Start</b>
+            </div>
+            <div class="small-2 columns">
+                <b>Term End</b>
+            </div>
+        </div>
+        <div ng-repeat="course in group.courses">
+            <div class="row row-item-text">
+                <div class="small-2 columns">
+                    {{ course.courseNumber }}
+                </div>
+                <div class="small-6 columns">
+                    {{ course.courseTitle }}
+                </div>
+                <div class="small-2 columns">
+                    {{ vm.TermDisplay(course.validStart) }}
+                </div>
+                <div class="small-2 columns">
+                    {{ vm.TermDisplay(course.validEnd) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+<br/>
+<!-- MODALS -->
+<div class="callout" ng-show="vm.transferInProgress">
+    <div class="row">
+        <div class="small-12 columns">
+            <h4>Searching for matching clusters...</h4>
+        </div>
+    </div>
+</div>
+<div class="callout" ng-show="!vm.transferInProgress && vm.emptySearch">
+    <div class="row">
+        <div class="small-12 columns">
+            <h4>Search returned no results, please refine your search criteria.</h4>
+        </div>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="row">
+    <div class="medium-offset-3 small-12 medium-6 columns end button-group expanded">
+        <button class="button" type="button" ng-click="vm.Search()">
+            <i class="fi-home button-icon"></i>Return to Search</button>
+        <button class="button" type="button" ng-click="vm.showExpired ? vm.showExpired = false : vm.showExpired = true">
+            <i class="fi-widget button-icon"></i>{{ vm.showExpired === true ? "Hide Expired" : "Show Expired" }}
+        </button>
+    </div>
+</div>
+
+
+<!-- QUICK LINKS -->
+<div ng-repeat="(key, value) in vm.headerInformation" ng-hide="vm.transferInProgress">
+    <div ng-click="show=show==true? false:true;">
+        <div class="row">
+            <div class="small-12 large-10 small-centered large-centered columns cluster-accordion">
+                <i class="fi-page-multiple button-icon"></i>
+                <b>{{ vm.departmentMap.get(key) }}</b>
+                - {{ value.length }} cluster(s)
+            </div>
+        </div>
+    </div>
+    <div class="repeated-item" ng-model="accordionContent" ng-if="show">
+        <div class="row" ng-repeat="cluster in value">
+            <div class="small-11 large-9 small-centered large-centered columns cluster-accordion-item" ng-click="vm.ScrollToLocation(cluster.number + '_click', cluster.number)"
+                ng-if="!(cluster.expirationNumeric < vm.currentTerm && cluster.expirationNumeric != 0 && !vm.showExpired)" id="{{ cluster.number + '_click' }}">
+                <i class="fi-arrow-down button-icon"></i>{{ cluster.title }} ({{ cluster.number }})
+                <br/>
+                <span class="expired-label-header" ng-if="cluster.expirationNumeric < vm.currentTerm && cluster.expirationNumeric != 0">Expired {{cluster.expirationTerm }}</span>
+            </div>
+        </div>
+        <br/>
+    </div>
+</div>
+<hr/>
+
+<!-- FULL CLUSTER LISTING -->
+<div ng-repeat="(key, value) in vm.clusterInformation" class="callout" ng-if="!vm.transferInProgress">
+    <div class="row department-header">
+        <h3>{{ vm.departmentMap.get(key) }} Department Clusters</h3>
+    </div>
+    <div ng-repeat="cluster in value">
+        <div ng-if="!(cluster.header.expirationNumeric < vm.currentTerm && cluster.header.expirationNumeric != 0 && !vm.showExpired)">
+            <div class="row cluster-header" id="{{ cluster.header.clusterNumber }}">
+                <h4>{{ cluster.header.title }} ({{ cluster.header.clusterNumber }})</h4>
+                <div class="small-offset-4 small-4 columns end button-group stacked-for-small expanded">
+                    <button class="button navigation" title="navigate to the top of the page" type="button" ng-click="vm.ScrollToLocation(cluster.header.clusterNumber)">Top</button>
+                    <button class="button navigation" title="edit this cluster" type="button" ng-click="vm.EditCluster(cluster.header.clusterNumber)">Edit Cluster</button>
+                </div>
+            </div>
+            <div class="row hide-for-small-only">
+                <div class="small-12">
+                    <p>{{ cluster.header.description }}</p>
+                </div>
+                <div class="small-12">
+                    <b>Fulfills the {{ vm.disciplineMap.get(cluster.header.academicDiscipline) }} area of the Rochester Curriculum.</b>
+                    <a href="https://secure1.rochester.edu/ccas/rc-change-form.php" target="_new">Declare This Cluster</a>
+                </div>
+                <div class="small-12" ng-if="cluster.header.expirationTerm && cluster.header.expirationNumeric < vm.currentTerm && cluster.header.expirationNumeric != 0">
+                    <span class="expired-label">
+                        <b>Expired in the {{ cluster.header.expirationTerm }} term.</b>
+                    </span>
+                </div>
+                <div class="small-12" ng-if="cluster.header.expirationTerm && cluster.header.expirationNumeric >= vm.currentTerm">
+                    <span class="alert-label">
+                        <b>Expires in the {{ cluster.header.expirationTerm }} term.</b>
+                    </span>
+                </div>
+            </div>
+            <div class="row show-for-small-only">
+                <div class="small-12 small-content">
+                    <p>{{ cluster.header.description }}</p>
+                </div>
+                <div class="small-12 small-content">
+                    <b>Fulfills the {{ vm.disciplineMap.get(cluster.header.academicDiscipline) }} area of the Rochester Curriculum.</b>
+                </div>
+                <div class="small-12 small-content">
+                    <a href="https://secure1.rochester.edu/ccas/rc-change-form.php" target="_new">Declare This Cluster</a>
+                </div>
+                <div class="small-12 small-content" ng-if="cluster.header.expirationTerm && cluster.header.expirationNumeric < vm.currentTerm && cluster.header.expirationNumeric != 0">
+                    <span class="expired-label">
+                        <b>Expired in the {{ cluster.header.expirationTerm }} term.</b>
+                    </span>
+                </div>
+                <div class="small-12 small-content" ng-if="cluster.header.expirationTerm && cluster.header.expirationNumeric >= vm.currentTerm">
+                    <span class="alert-label">
+                        <b>Expires in the {{ cluster.header.expirationTerm }} term.</b>
+                    </span>
+                </div>
+            </div>
+            <br/>
+            <div ng-repeat="group in cluster.groups">
+                <div class="hide-for-small-only">
+                    <div class="row group-header">
+                        <div class="small-8 small-centered columns">
+                            {{ group.groupDescription }}
+                        </div>
+                    </div>
+                    <div class="row course-row" ng-repeat="course in group.courses">
+                        <div class="small-12 large-6 course-label course-label-highlight columns" ng-if="vm.SearchCheck(course.courseNumber)">
+                            <a ng-href="{{ vm.GenerateLink(course.courseNumber) }}" target="_new"><b>{{ course.courseNumber }}</b></a> {{ course.courseTitle }}
+                        </div>
+                        <div class="small-12 large-6 course-label columns" ng-if="!vm.SearchCheck(course.courseNumber)">
+                            <a ng-href="{{ vm.GenerateLink(course.courseNumber) }}" target="_new"><b>{{ course.courseNumber }}</b></a> {{ course.courseTitle }}
+                        </div>
+                        <div class="small-12 large-3 columns">
+                            <span class="alert-label" ng-if="course.validStart">
+                                Valid Starting {{ course.validStart }}
+                            </span>
+                        </div>
+                        <div class="small-12 large-3 columns">
+                            <span class="alert-label" ng-if="course.validEnd && course.validEndNumeric >= vm.currentTerm">
+                                Valid Through {{ course.validEnd }}
+                            </span>
+                            <span class="expired-label" ng-if="course.validEnd && course.validEndNumeric < vm.currentTerm && course.validEndNumeric != 0">
+                                Valid Through {{ course.validEnd }}
+                            </span>
+                        </div>
+                        <div class="small-12 large-12 columns" ng-if="vm.lastOfferedMap.has(course.courseNumber)">
+                            <span class="cdcs-label">Last Offered in {{ vm.lastOfferedMap.get(course.courseNumber) }}.</span>
+                            <span class="cdcs-label" ng-if="vm.crosslistMap.has(course.courseNumber)">Crosslisted as {{ vm.crosslistMap.get(course.courseNumber)}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-for-small-only">
+                    <div class="row group-header">
+                        <div class="small-8 small-centered columns">
+                            {{ group.groupDescription }}
+                        </div>
+                    </div>
+                    <div class="row course-row" ng-repeat="course in group.courses">
+                        <div class="small-12 small-content course-label columns course-label-highlight" ng-if="vm.SearchCheck(course.courseNumber)">
+                             <a ng-href="{{ vm.GenerateLink(course.courseNumber) }}" target="_new"><b>{{ course.courseNumber }}</b></a> {{ course.courseTitle }}
+                        </div>
+                        <div class="small-12 small-content course-label columns" ng-if="!vm.SearchCheck(course.courseNumber)">
+                            <a ng-href="{{ vm.GenerateLink(course.courseNumber) }}" target="_new"><b>{{ course.courseNumber }}</b></a> {{ course.courseTitle }}
+                        </div>
+                        <div class="small-12 small-content columns">
+                            <span class="alert-label" ng-if="course.validEnd && course.validEndNumeric >= vm.currentTerm">
+                                Valid Through {{ course.validEnd }}
+                            </span>
+                            <span class="expired-label" ng-if="course.validEnd && course.validEndNumeric < vm.currentTerm && course.validEndNumeric != 0">
+                                Valid Through {{ course.validEnd }}
+                            </span>
+                        </div>
+                        <div class="small-12 small-content columns" ng-if="vm.lastOfferedMap.has(course.courseNumber)">
+                            <span class="cdcs-label">Last Offered in {{ vm.lastOfferedMap.get(course.courseNumber) }}.</span>
+                            <span class="cdcs-label" ng-if="vm.crosslistMap.has(course.courseNumber)">Crosslisted as {{ vm.crosslistMap.get(course.courseNumber)}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

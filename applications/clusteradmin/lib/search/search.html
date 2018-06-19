@@ -1,0 +1,74 @@
+<br/>
+<!-- text input form -->
+<form ng-submit="vm.Search()">
+    <div class="row">
+        <div class="large-4 large-offset-2 columns">
+            <select ng-model="vm.selectedDiscipline">
+                <option ng-value="value" ng-repeat="(key, value) in vm.academicDisciplines">{{ key }}</option>
+            </select>
+        </div>
+        <div class="large-4 columns end">
+            <select ng-model="vm.selectedDepartment">
+                <option ng-value="object.code" ng-repeat="object in vm.academicDepartments[vm.selectedDiscipline]">{{ object.label }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-8 large-offset-2 columns">
+            <input type="text" ng-model="vm.freeText" placeholder="Enter Search Text" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-8 large-offset-2 columns">
+            <p align="center">
+                <button type="button" class="button large" title="click to remove" ng-repeat="value in vm.courseList" ng-click="vm.RemoveCourse(value)">
+                    {{ value }}
+                    <i class="fi-x button-icon-right"></i>
+                </button>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-4 large-offset-4 columns">
+            <div class="input-group">
+                <span class="input-group-label">Add Course</span>
+                <input ng-model="vm.course" placeholder="Ex: ENG123" class="input-group-field" type="text" />
+                <div class="input-group-button">
+                    <button type="button" title="add course to your search" class="button" ng-click="vm.AddCourse()">
+                        <i class="fi-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <p align="center">
+            <div class="small-offset-3 small-6 columns end button-group expanded">
+                <button class="button primary button-pop" type="button" ng-click="vm.Dashboard()">Return to Dashboard</button>
+                <button class="button secondary button-pop" type="submit"><b>Find Clusters</b></button>
+            </div>
+        </p>
+    </div>
+</form>
+
+<!-- Bottom Text Panel -->
+<div class="callout">
+    <div class="row">
+        <div class="large-12 columns">
+            <h4>Search Suggestions</h4>
+            <ul>
+                <li>To search for all clusters within a particular division, set the pull-down menu to the division you want
+                    and click on "Search". This will show all clusters associated with that division. For instance, selecting
+                    'Humanities' and hitting search will show all clusters for the Humanities portion of the Rochester Curriculum.
+                </li>
+                <li>To search for clusters which include a specific course or set of courses, enter the course number(s) (e.g.
+                    BCS 110) in the 'Add Course' box and press the '+' button.</li>
+                <li>To search for clusters in a specific department or program, use the pull down menu on the right. To restrict
+                    those clusters to a particular division, use in addition the pull down menu on the left.</li>
+                <li>To search for clusters related to a specific subject, enter the subject (e.g. "mind") in the search text
+                    box.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<br/>
+<div class="row" ng-if="vm.listDisplay">
+    <div class="small-offset-5 small-2 columns end button-group expanded">
+        <input type="button" class="button" ng-click="vm.Dashboard()" value="Dashboard" />
+    </div>
+</div>
+<div class="row" ng-if="!vm.listDisplay">
+    <div class="small-offset-4 small-4 columns end button-group expanded">
+        <input type="button" class="button" ng-click="vm.Dashboard()" value="Dashboard" />
+    </div>
+</div>
+
+<div class="callout" ng-if="vm.listDisplay">
+    <div class="row text-center">
+        <div class="small-offset-2 small-8 columns end">
+            <p>Clusters shown below have been edited and are awaiting further editing or publishing.</p>
+        </div>
+    </div>
+    <div class="row row-item">
+        <div class="small-1 columns">
+            <b>Number</b>
+        </div>
+        <div class="small-4 columns">
+            <b>Title</b>
+        </div>
+        <div class="small-2 columns">
+            <b>User</b>
+        </div>
+        <div class="small-3 columns">
+            <b>Date</b>
+        </div>
+        <div class="small-2 columns">
+
+        </div>
+    </div>
+    <div class="row row-item" ng-repeat="rec in vm.publishList">
+        <div class="small-1 columns row-text">
+            {{ rec.clusterNumber }}
+        </div>
+        <div class="small-4 columns row-text">
+            {{ rec.title }}
+        </div>
+        <div class="small-2 columns row-text">
+            {{ rec.editedUser }}
+        </div>
+        <div class="small-3 columns row-text">
+            {{ rec.editedDate }}
+        </div>
+        <div class="small-2 columns">
+            <input type="button" title="Review this cluster" class="button" value="Review Cluster" ng-click="vm.Review(rec.clusterNumber)"
+            />
+        </div>
+    </div>
+</div>
+
+<div class="callout" ng-if="!vm.listDisplay">
+    <div class="row display-header text-center">
+        <div class="small-4 columns">
+            <b>Cluster Number</b>
+            <br/> {{ vm.modelData.clusterNumber }}
+        </div>
+        <div class="small-4 columns">
+            <b>Expiration Term</b>
+            <br/> {{ vm.TermDisplay(vm.modelData.expirationTerm) }}
+        </div>
+        <div class="small-4 columns end">
+            <b>Cluster Title</b>
+            <br/> {{ vm.modelData.title }}
+        </div>
+    </div>
+    <div class="row display-item text-center">
+        <div class="small-offset-2 small-4 columns">
+            <b>Academic Discipline</b>
+            <br/> {{ vm.academicDisciplinesMap.get(vm.modelData.academicDiscipline) }}
+        </div>
+        <div class="small-4 columns end">
+            <b>Academic Department</b>
+            <br/> {{ vm.academicDepartmentsMap.get(vm.modelData.academicDepartment) }}
+        </div>
+    </div>
+    <div class="row display-item text-center">
+        <div class="small-offset-2 small-8 columns end">
+            <b>Cluster Description</b>
+            <br/> {{ vm.modelData.description }}
+        </div>
+    </div>
+</div>
+<div class="callout" ng-repeat="group in vm.modelData.groups">
+    <div class="row row-header-text text-center">
+        <div class="small-offset-2 small-8 columns">
+            {{ group.groupDescription }}
+        </div>
+    </div>
+    <div class="row row-item-text" ng-if="group.courses.length > 0">
+        <div class="small-2 columns">
+            <b>Number</b>
+        </div>
+        <div class="small-6 columns">
+            <b>Title</b>
+        </div>
+        <div class="small-2 columns">
+            <b>Term Start</b>
+        </div>
+        <div class="small-2 columns">
+            <b>Term End</b>
+        </div>
+    </div>
+    <div ng-repeat="course in group.courses">
+        <div class="row row-item-text">
+            <div class="small-2 columns">
+                {{ course.courseNumber }}
+            </div>
+            <div class="small-6 columns">
+                {{ course.courseTitle }}
+            </div>
+            <div class="small-2 columns">
+                {{ vm.TermDisplay(course.validStart) }}
+            </div>
+            <div class="small-2 columns">
+                {{ vm.TermDisplay(course.validEnd) }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" ng-if="!vm.listDisplay">
+    <div class="small-offset-4 small-4 columns end button-group expanded">
+        <input type="button" class="button" value="Edit Cluster" ng-click="vm.Edit()" />
+        <input type="button" class="button" value="Publish Cluster" ng-click="vm.Publish()" />
+    </div>
+</div>

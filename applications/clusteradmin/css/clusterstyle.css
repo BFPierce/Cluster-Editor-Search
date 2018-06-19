@@ -1,0 +1,284 @@
+.login-panel{
+    padding-top: 2rem;
+	background-color:white;
+    box-shadow: 1px 1px 6px #A9A9A9;
+    margin-bottom: 2rem;
+}
+
+.message-panel-alert{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+	background-color:rgb(200, 0, 0);
+    color:white;
+    border-radius: .25rem;	
+}
+
+.message-panel-success{
+    padding-top: .5rem;
+    padding-top: .5rem;
+	background-color:rgb(0,200,0);
+    color:white;	
+    border-radius: .25rem;
+}
+
+.message-panel{
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    background: #f8f8f8;
+    border: solid 1px #A0A0A0;
+    border-radius: .25rem;
+    font-weight: bold;
+}
+
+.dashboard-options{
+    text-align: center;
+    margin-bottom: 3rem;
+    min-height: fit-content;
+}
+
+.row-header{
+    padding-top: .8rem;
+    background: #d7d9da;
+    border: solid 1px rgb(0, 0, 0);
+    margin-bottom: .5rem;
+    font-weight: bold;
+}
+
+.row-header-text{
+    background: #d7d9da;
+    border: solid 1px rgb(0, 0, 0);
+    margin-bottom: .5rem;
+    font-weight: bold;
+}
+
+.row-item{
+    padding-top: .8rem;
+    padding-left: .8rem;
+    padding-right: .8rem;
+    background: #f8f8f8;
+    border: 1px solid #b3b3b3;
+    margin-bottom: .25rem;
+}
+
+.row-item-text{
+    background: #f8f8f8;
+    border: 1px solid #b3b3b3;
+    margin-bottom: .25rem;
+}
+
+.row-text{
+    padding-top: .4rem;
+}
+
+.display-header{
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    background: #073661;
+    color: #aab9c9;
+    border: solid 2px #ffdd00;
+    border-radius: 4px;
+    margin-bottom: .5rem;
+}
+
+.display-item{
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    background: #f8f8f8;
+    border: 1px solid #b3b3b3;
+    border-radius: 4px;
+    margin-bottom: .25rem;
+}
+
+/* Search Style */
+.navigation{
+    color: #99acbe;
+    border: 1px solid #99acbe;
+    background: #073661;
+    border-radius: 2px;
+}
+
+.cluster-header{
+    background: #073661;
+    color: #ffffff;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    border-top: solid 4px #ffdd00;
+    margin-top: .5rem;
+}
+
+.cluster-header h4{
+    color: #ffffff;
+}
+
+.department-header{
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.group-header{
+    color: #000000;
+    background: #d7d9da;
+    text-align: center;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    border: solid 2px #000000;
+    border-radius: 2px;
+    font-weight: bold;
+    margin-top: .5rem;
+    margin-bottom: .10rem;
+}
+
+.cluster-accordion{
+    background: #d7d9da;
+    color: #003b71;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    border-left: solid 4px #073661;
+    border-right: solid 4px #073661;
+    margin-bottom: .25rem;
+}
+
+.cluster-accordion:hover{
+    background: rgb(223, 223, 223);
+}
+
+.cluster-accordion-item{
+    background: #d7d9da;
+    color:#003b71;
+    border-bottom: solid 1px #000000;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+
+.cluster-accordion-item:hover{
+    background: rgb(223, 223, 223);
+    color:#003b71;
+    font-weight: bold;
+    border-bottom: solid 1px #000000;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+
+.course-row{
+    background: #f8f8f8;
+    border-radius: 2px;
+    border: 1px solid #b3b3b3;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    margin-bottom: .10rem;
+}
+
+.expired-label{
+    display: inline-block;
+    color: #000000;
+    padding: .25rem .75rem;
+    border-radius: 4px;
+    border: 1px solid #3d3d3d;
+    font-size: .875rem;
+    font-weight: bold;
+    min-width: 200px;
+    text-align: center;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3019+0,cf0404+100;Red+3D */
+    background: #ff3019; /* Old browsers */
+    background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ff3019 0%,#cf0404 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ff3019 0%,#cf0404 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
+}
+
+.expired-label-header{
+    display: inline-block;
+    margin-right: auto;
+    color: #000000;
+    padding: .25rem .75rem;
+    border-radius: 4px;
+    border: 1px solid #3d3d3d;
+    font-size: .875rem;
+    font-weight: bold;
+    min-width: 200px;
+    text-align: center;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3019+0,cf0404+100;Red+3D */
+    background: #ff3019; /* Old browsers */
+    background: -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ff3019 0%,#cf0404 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ff3019 0%,#cf0404 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
+}
+
+.alert-label{
+    display: inline-block;
+    color: #000000;
+    padding: .25rem .75rem;
+    border-radius: 4px;
+    border: 1px solid #3d3d3d;
+    font-size: .875rem;
+    font-weight: bold;
+    min-width: 200px;
+    text-align: center;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffc619+0,d08904+100 */
+    background: #ffc619; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffc619 0%, #d08904 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ffc619 0%,#d08904 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ffc619 0%,#d08904 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc619', endColorstr='#d08904',GradientType=0 ); /* IE6-9 */
+}
+
+.cdcs-label{
+    display: inline-block;
+    padding: .25rem .75rem;
+    font-size: .875rem;
+    text-align: center;
+}
+
+.course-label{
+    color: #000000;
+    padding-top: .25rem;
+}
+
+.course-label-highlight{
+    background: #ffc619;
+    border-radius: 2px;
+}
+
+.small-content{
+    text-align: center;
+    margin-bottom: .5rem;
+}
+
+/* Icon Style */
+.inner-icon{
+	position: relative;
+	display: inline-block;	
+}
+
+.inner-icon .icons{
+	position: absolute;
+	padding-top:8px;
+	padding-left:5px;
+	pointer-events:none;
+    color:#CCCCCC;
+    font-size: large;
+}
+
+.left-inner .icons{
+	left:0px;	
+}
+
+.left-inner input{
+	padding-left: 1.25rem;	
+}
+
+.button-icon {
+    margin: auto;
+    padding-right: .5rem;
+    font-size: medium;
+}
+
+.button-icon-right{
+    padding-left: 1rem;
+    font-size: medium;
+}

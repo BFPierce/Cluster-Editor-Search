@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <base href="/registrar/applications/clusteradmin/">
+    <title>
+        Cluster Search Editor
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond%7CLato" rel="stylesheet" />
+    <script src="//use.fontawesome.com/fdda114be5.js"></script>
+
+    <!-- CSS Stylesheets -->
+    <link href="css/clusterstyle.css" rel="stylesheet" />
+    <link href="../modules/foundation-icons/foundation-icons.css" rel="stylesheet" />
+
+    <!-- Angular JS Files DEVELOPMENT - We have a 'fixed' version of AngularJS that's stored locally, not the ideal but it is what it is. -->
+    <script src="../modules/angular/angular.js"></script>
+    <script src="../modules/angular-animate/angular-animate.js"></script>
+    <script src="../modules/angular-aria/angular-aria.js"></script>
+    <script src="../modules/angular-messages/angular-messages.js"></script>
+    <script src="../modules/angular-route/angular-route.js"></script>
+
+    <!-- Angular JS Files PRODUCTION -->
+    <!--
+    <script src="../modules/angular/angular.min.js"></script>
+    <script src="../modules/angular-animate/angular-animate.min.js"></script>
+    <script src="../modules/angular-aria/angular-aria.min.js"></script>
+    <script src="../modules/angular-messages/angular-messages.min.js"></script>
+    <script src="../modules/angular-route/angular-route.min.js"></script>
+    -->
+
+    <!-- Application Bootstrap -->
+    <script src="../app-common/authentication/authentication.js"></script>
+
+    <script src="lib/app.js"></script>
+    <script src="lib/services/cluster.service.js"></script>
+    <script src="lib/services/staticdata.service.js"></script>
+    <script src="lib/services/search.service.js"></script>
+
+    <!-- Controllers -->
+    <script src="lib/edit/edit.js"></script>
+    <script src="lib/main/main.js"></script>
+    <script src="lib/process/process.js"></script>
+    <script src="lib/publish/publish.js"></script>
+    <script src="lib/results/results.js"></script>
+    <script src="lib/search/search.js"></script>
+    <script src="lib/history/history.js"></script>
+</head>
+
+<body>
+    <!-- NOTE: A number of style elements have been removed from this page per the clients request, mostly defining main header and footer styles.
+               This repo is just a demonstration of the 'internal' application structure. 
+    -->
+    <main class="main" id="main" ng-app="clusterEditor">
+        <header class="main__header">
+            <div class="row">
+                <!--<div class="columns small-12 medium-9 medium-push-3 section--thick medium-section--thick">-->
+                <div class="columns small-12 medium-12 text-center section--thick medium-section--thick">
+                    <h1>
+                        Cluster Management
+                    </h1>
+                </div>
+            </div>
+        </header>
+        <div class="main__content">
+            <div class="page row">
+                <article class="columns medium-12">
+                    <ng-view></ng-view>
+                </article>
+            </div>
+        </div>
+    </main>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!-- Login Panel -->
+<br/>
+<div ng-if="!vm.loggedIn">
+    <div class="row text-center">
+        <div class="columns small-12">
+            <p>Log in below using your NetID and Password to access the Cluster Management Site. Once you have logged in this
+                page will refresh with the form.</p>
+        </div>
+    </div>
+    <div class="columns small-12 medium-4 small-centered login-panel">
+        <div class="row collapse">
+            <div class="columns small-8 small-centered">
+                <div class="inner-icon left-inner">
+                    <i class="fi-torso icons"></i>
+                    <input type="text" placeholder="Net ID" ng-model="vm.userName" size="60" />
+                </div>
+            </div>
+        </div>
+        <div class="row collapse">
+            <div class="columns small-8 small-centered">
+                <div class="inner-icon left-inner">
+                    <i class="fi-lock icons"></i>
+                    <input type="password" placeholder="Password" ng-model="vm.password" size="60" />
+                </div>
+            </div>
+        </div>
+        <div class="row--with-borders" ng-if="vm.loginFailure">
+            <div class="columns small-12 medium-10 large-10 text-center message-panel-alert medium-centered ">The NetID or Password used is incorrect. Please try again!</div>
+        </div>
+        <div class="row--with-borders" ng-if="vm.authFailure">
+            <div class="columns small-12 medium-10 large-10 text-center message-panel-alert medium-centered ">You are not authorized to access this site.</div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="text-center columns small-12">
+                <input class="medium button button-pop" name="Login" type="button" value="Login" ng-click="vm.Login()" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-center columns small-12">
+                <a href="http://www.rochester.edu/its/netid/" target="_blank">What is NetID?/Help</a>
+            </div>
+        </div>
+        <br/>
+    </div>
+</div>
+
+<!-- Deans Office Dashboard -->
+<div class="dashboard-options" ng-if="vm.loggedIn && vm.adminType=='DEAN'">
+    <div class="row">
+        <p>Use the options below to manage clusters in the Search Engine.</p>
+    </div>
+    <div class="row">
+        <div class="small-8 small-offset-2 end columns button-group stacked-for-small expanded">
+            <input type="button" class="button" ng-click="vm.Search()" value="Search Clusters" />
+            <input type="button" class="button" ng-click="vm.Create()" value="Create New Cluster" />
+            <input type="button" class="button" ng-click="vm.Edit()" value="Edit Existing Cluster" />
+        </div>
+        <div class="small-8 small-offset-2 end columns button-group stacked-form-small expanded">
+            <input type="button" class="button" ng-click="vm.Publish()" value="Publish Cluster" />
+            <input type="button" class="button" ng-click="vm.History()" value="View History" />
+            <input type="button" class="button" ng-click="vm.Logout()" value="Logout" />
+        </div>
+    </div>
+</div>
+
+<!-- Registrar's Office Dashboard -->
+<div class="dashboard-options" ng-if="vm.loggedIn && vm.adminType=='REGR'">
+    <div class="row">
+        <p>Use the options below to manage clusters in the Search Engine.</p>
+    </div>
+    <div class="row">
+        <div class="small-4 small-offset-4 end columns button-group stacked-for-small expanded">
+            <input type="button" class="button" ng-click="vm.Process()" value="Process Changes" />
+        </div>
+        <div class="small-4 small-offset-4 end columns button-group stacked-for-small expanded">
+            <input type="button" class="button" ng-click="vm.Logout()" value="Logout" />
+        </div>
+    </div>
+</div>
+
+<!-- Modal Displays -->
+<div class="callout" ng-if="vm.editClusterDisplay">
+    <div class="row text-center">
+        <div class="small-12 columns">
+            <p>Enter the cluster number below for the cluster you would like to edit. Ex.) S1CSC001</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-offset-4 small-2 columns">
+            <input type="text" ng-model="vm.editNumber" />
+        </div>
+        <div class="small-2 columns end">
+            <input type="button" class="button" ng-click="vm.EditCluster()" value="Edit Cluster" />
+        </div>
+    </div>
+    <div class="row text-center" ng-if="vm.editMessage">
+        <div class="small-offset-2 small-8 columns end message-panel">
+            {{ vm.editMessage }}
+        </div>
+    </div>
+</div>
+
+<div class="callout" ng-if="vm.createClusterDisplay">
+    <div class="row text-center">
+        <div class="small-12 columns">
+            <p>Enter the cluster number below for the cluster you would like to create. Ex.) S1CSC001</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-offset-4 small-2 columns">
+            <input type="text" ng-model="vm.createNumber" />
+        </div>
+        <div class="small-2 columns end">
+            <input type="button" class="button" ng-click="vm.CreateCluster()" value="Create Cluster" />
+        </div>
+    </div>
+    <div class="row text-center" ng-if="vm.createMessage">
+        <div class="small-offset-2 small-8 columns end message-panel">
+            {{ vm.createMessage }}
+        </div>
+    </div>
+</div>
+
+<div class="callout" ng-if="vm.viewHistoryDisplay">
+    <div class="row text-center">
+        <div class="small-12 columns">
+            <p>Enter the cluster number below for the cluster you would like to view the historical record of.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-offset-4 small-2 columns">
+            <input type="text" ng-model="vm.historyNumber" />
+        </div>
+        <div class="small-2 columns end">
+            <input type="button" class="button" ng-click="vm.HistoryDisplay()" value="View History" />
+        </div>
+    </div>
+    <div class="row text-center" ng-if="vm.historyMessage">
+        <div class="small-offset-2 small-8 columns end message-panel">
+            {{ vm.historyMessage }}
+        </div>
+    </div>
+</div>
+</div>
