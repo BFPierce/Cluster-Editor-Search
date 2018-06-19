@@ -24,7 +24,7 @@ The remaining 5 database tables are utility tables, such as a place to record qu
 
 ### API Structure
 
-This application uses a basic REST API which handles various GET, POST, DELETE, and PUT requests and handle the security surrounding these requests. This was written in PHP with no framework based on an open source Abstract class for the structure of the API. api/registrar_api.php shows the general structure of the end points available to this system.
+This application uses a REST API which handles various GET, POST, DELETE, and PUT requests and handle the security surrounding these requests. This was written in PHP with no framework based on an open source Abstract class for the structure of the API. api/registrar_api.php shows the general structure of the end points available to this system.
 
 ### Application Structure
 
@@ -39,7 +39,7 @@ Each component here handles a specific part of the business process.
 
 ### Services
 
-I used four basic services for this particular application.
+I used four angular services for this particular application.
 
 - Authentication - Authenticates a user via the backend system, and stores the JWT (JSON Web Token) which contains it's own expiration date and information about the logged in user. This also attaches the token as a 'bearer token' to all future HTTP requests made to the API for validation on the backend.
 - Cluster - This service handles all HTTP requests to the API regarding the cluster itself, each are returned as Javascript promises which are chained as necessary in the controller to handle most logic.
